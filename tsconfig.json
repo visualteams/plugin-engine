@@ -1,9 +1,20 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "sourceMap": true,
+    "target": "es6",
     "module": "commonjs",
     "declaration": true,
-    "outDir": "./dist",
-    "strict": true
-  }
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "removeComments": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "types": ["node"],
+    "lib": ["es2017", "dom"],
+    "outDir": ".",
+    "skipLibCheck": true
+  },
+  "exclude": ["node_modules", "definitions"],
+  "include": ["src", "tests"]
 }

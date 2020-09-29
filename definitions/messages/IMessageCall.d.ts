@@ -1,4 +1,4 @@
-export interface MessageCall {
+export interface IMessageCall {
   type: "call";
   id: string;
   method: string;

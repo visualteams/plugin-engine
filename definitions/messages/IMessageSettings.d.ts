@@ -1,4 +1,4 @@
-export interface MessageSettings {
+export interface IMessageSettings {
   type: "settings";
   settings: any;
 }

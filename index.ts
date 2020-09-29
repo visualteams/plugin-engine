@@ -2,8 +2,8 @@ import { nanoid } from "nanoid";
 
 import { TSetting } from "./definitions/settings/TSetting";
 import { TObjectSetting } from "./definitions/settings/TObjectSetting";
-import { MessageCall } from "./definitions/messages/IMessageCall";
-import { MessageResponse } from "./definitions/messages/IMessageResponse";
+import { IMessageCall } from "./definitions/messages/IMessageCall";
+import { IMessageResponse } from "./definitions/messages/IMessageResponse";
 
 interface ICallbackFunc {
   (err: string, res: any): any;
@@ -34,7 +34,7 @@ class Plugin {
   constructor() {
     require("net").createServer().listen();
 
-    process.on("message", (message: MessageResponse): void => {
+    process.on("message", (message: IMessageResponse): void => {
       if (message.type === "call")
         this.callbacks[message.id](message.err, message.res);
       else if (message.type === "settings") {
@@ -59,7 +59,7 @@ class Plugin {
 
     this.callbacks[id] = cb;
 
-    const message: MessageCall = { type: "call", id, method, data };
+    const message: IMessageCall = { type: "call", id, method, data };
 
     if (process?.send) process.send(message);
   };

@@ -31,4 +31,10 @@ class Plugin {
     }
 }
 
+export const SettingType = {
+    STRING: 'string',
+    BOOLEAN: 'boolean',
+    NUMBER: 'number'
+}
+
 export default Plugin

@@ -1,0 +1,27 @@
+{
+  "name": "@visualteams/plugin-engine",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.3"
+  },
+  "dependencies": {
+    "@types/node": "^14.11.2",
+    "nanoid": "^3.1.12"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/visualteams/plugin-engine.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/visualteams/plugin-engine/issues"
+  },
+  "homepage": "https://github.com/visualteams/plugin-engine#readme",
+  "description": ""
+}

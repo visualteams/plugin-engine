@@ -1,5 +1,10 @@
 import { nanoid } from "nanoid";
 
+import { TSetting } from "./definitions/settings/TSetting";
+import { TObjectSetting } from "./definitions/settings/TObjectSetting";
+import { MessageCall } from "./definitions/messages/IMessageCall";
+import { MessageResponse } from "./definitions/messages/IMessageResponse";
+
 interface ICallbackFunc {
   (err: string, res: any): any;
 }
@@ -12,19 +17,9 @@ interface ICallFunc {
   ): void;
 }
 
-type TSetting = {
-  id: string;
-  i18nLabel: string;
-  i18nDescription: string;
-  required: boolean;
-  type: "string" | "boolean" | "number";
-};
-
 interface IProvideSettingsFunc {
   (settings: TSetting[]): void;
 }
-
-type TObjectSetting = Record<string, string | boolean | number>;
 
 interface IOnSettingsChangeFunc {
   (oldSettings: TObjectSetting, newSettings: TObjectSetting): void;
@@ -39,7 +34,7 @@ class Plugin {
   constructor() {
     require("net").createServer().listen();
 
-    process.on("message", (message) => {
+    process.on("message", (message: MessageResponse): void => {
       if (message.type === "call")
         this.callbacks[message.id](message.err, message.res);
       else if (message.type === "settings") {
@@ -64,14 +59,10 @@ class Plugin {
 
     this.callbacks[id] = cb;
 
-    if (process?.send) process.send({ type: "call", id, method, data });
+    const message: MessageCall = { type: "call", id, method, data };
+
+    if (process?.send) process.send(message);
   };
 }
-
-export const SettingType = {
-  STRING: "string",
-  BOOLEAN: "boolean",
-  NUMBER: "number",
-};
 
 export default Plugin;

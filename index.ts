@@ -24,11 +24,17 @@ interface IProvideSettingsFunc {
   (settings: TSetting[]): void;
 }
 
+type TObjectSetting = Record<string, string | boolean | number>;
+
+interface IOnSettingsChangeFunc {
+  (oldSettings: TObjectSetting, newSettings: TObjectSetting): void;
+}
+
 type TCallbacksList = Record<string, ICallbackFunc>;
 
 class Plugin {
   private callbacks: TCallbacksList = {};
-  public settings: Record<string, string | boolean | number> = {};
+  public settings: TObjectSetting = {};
 
   constructor() {
     require("net").createServer().listen();
@@ -36,8 +42,18 @@ class Plugin {
     process.on("message", (message) => {
       if (message.type === "call")
         this.callbacks[message.id](message.err, message.res);
+      else if (message.type === "settings") {
+        const oldSettings = this.settings;
+        this.settings = message.settings;
+
+        if (this.onSettingsChange) {
+          this.onSettingsChange(oldSettings, this.settings);
+        }
+      }
     });
   }
+
+  onSettingsChange: IOnSettingsChangeFunc = () => {};
 
   provideSettings: IProvideSettingsFunc = (settings) => {
     if (process?.send) process.send({ type: "settings", settings });

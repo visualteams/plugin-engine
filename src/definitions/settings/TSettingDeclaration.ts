@@ -1,4 +1,4 @@
-export type TSetting = {
+export type TSettingDeclaration = {
   id: string;
   i18nLabel: string;
   i18nDescription: string;

@@ -1,9 +1,11 @@
 import { nanoid } from "nanoid";
 
-import { TSetting } from "./definitions/settings/TSetting";
+import { TSettingDeclaration } from "./definitions/settings/TSettingDeclaration";
 import { TObjectSetting } from "./definitions/settings/TObjectSetting";
 import { IMessageCall } from "./definitions/messages/IMessageCall";
-import { IMessageResponse } from "./definitions/messages/IMessageResponse";
+import { MessageType } from "./definitions/messages/MessageType";
+import { IMessageSettings } from "./definitions/messages/IMessageSettings";
+import { IMessageResponse } from "./definitions/messages/TMessageResponse";
 
 interface ICallbackFunc {
   (err: string, res: any): any;
@@ -18,7 +20,7 @@ interface ICallFunc {
 }
 
 interface IProvideSettingsFunc {
-  (settings: TSetting[]): void;
+  (settings: TSettingDeclaration[]): void;
 }
 
 interface IOnSettingsChangeFunc {
@@ -35,11 +37,12 @@ class Plugin {
     require("net").createServer().listen();
 
     process.on("message", (message: IMessageResponse): void => {
-      if (message.type === "call")
+      if (message.type === MessageType.CALL)
         this.callbacks[message.id](message.err, message.res);
-      else if (message.type === "settings") {
+
+      else if (message.type === MessageType.SETTINGS) {
         const oldSettings = this.settings;
-        this.settings = message.settings;
+        this.settings = message.res;
 
         if (this.onSettingsChange) {
           this.onSettingsChange(oldSettings, this.settings);
@@ -51,7 +54,12 @@ class Plugin {
   onSettingsChange: IOnSettingsChangeFunc = () => {};
 
   provideSettings: IProvideSettingsFunc = (settings) => {
-    if (process?.send) process.send({ type: "settings", settings });
+    const message: IMessageSettings = {
+      type: MessageType.SETTINGS,
+      settings,
+    };
+
+    if (process?.send) process.send(message);
   };
 
   call: ICallFunc = (method, data, cb) => {
@@ -59,7 +67,7 @@ class Plugin {
 
     this.callbacks[id] = cb;
 
-    const message: IMessageCall = { type: "call", id, method, data };
+    const message: IMessageCall = { type: MessageType.CALL, id, method, data };
 
     if (process?.send) process.send(message);
   };

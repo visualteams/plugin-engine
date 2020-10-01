@@ -13,7 +13,7 @@ interface ICallbackFunc {
 }
 
 interface ICallFunc {
-  (method: string, data: string | number | Record<any, any>): void;
+  (method: string, data: string | number | Record<any, any>): Promise<any>;
 }
 
 interface IProvideSettingsDeclarationFunc {

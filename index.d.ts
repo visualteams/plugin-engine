@@ -1,11 +1,8 @@
 import { TSettingDeclaration } from "./definitions/settings/TSettingDeclaration";
 import { TObjectSetting } from "./definitions/settings/TObjectSetting";
 import { TEvents } from "./definitions/events/TEvents";
-interface ICallbackFunc {
-    (err: string, res: any): any;
-}
 interface ICallFunc {
-    (method: string, data: string | number | Record<any, any>, cb: ICallbackFunc): void;
+    (method: string, data: string | number | Record<any, any>): void;
 }
 interface IProvideSettingsDeclarationFunc {
     (settings: TSettingDeclaration[]): void;
@@ -25,6 +22,6 @@ declare class Plugin {
     provideSettingsDeclaration: IProvideSettingsDeclarationFunc;
     /** Events */
     registerEvents: (events: TEvents) => void;
-    call: ICallFunc;
+    callMethod: ICallFunc;
 }
 export default Plugin;

@@ -38,6 +38,7 @@ class Plugin {
       if (message.type === MessageType.CALL)
         this.callbacks[message.id](message.err, message.res);
       else if (message.type === MessageType.SETTINGS) {
+        console.log("message:", message);
         const oldSettings = this.settings;
         this.settings = message.res;
 
@@ -52,8 +53,8 @@ class Plugin {
     });
   }
 
-  onSettingsChange: IOnSettingsChangeFunc = (settings) => {
-    console.log("settings change", settings);
+  onSettingsChange: IOnSettingsChangeFunc = (oldSettings, newSettings) => {
+    console.log("settings change", oldSettings, newSettings);
   };
 
   private _sendMessage = <T>(message: T) => {

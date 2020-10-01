@@ -44,7 +44,9 @@ var Plugin = /** @class */ (function () {
         this.callbacks = {};
         this.settings = {};
         this.events = {};
-        this.onSettingsChange = function () { };
+        this.onSettingsChange = function (settings) {
+            console.log("settings change", settings);
+        };
         this._sendMessage = function (message) {
             if (process === null || process === void 0 ? void 0 : process.send)
                 process.send(message);

@@ -2,7 +2,7 @@ import { TSettingDeclaration } from "./definitions/settings/TSettingDeclaration"
 import { TObjectSetting } from "./definitions/settings/TObjectSetting";
 import { TEvents } from "./definitions/events/TEvents";
 interface ICallFunc {
-    (method: string, data: string | number | Record<any, any>): void;
+    (method: string, data: string | number | Record<any, any>): Promise<any>;
 }
 interface IProvideSettingsDeclarationFunc {
     (settings: TSettingDeclaration[]): void;

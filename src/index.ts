@@ -52,7 +52,9 @@ class Plugin {
     });
   }
 
-  onSettingsChange: IOnSettingsChangeFunc = () => {};
+  onSettingsChange: IOnSettingsChangeFunc = (settings) => {
+    console.log("settings change", settings);
+  };
 
   private _sendMessage = <T>(message: T) => {
     if (process?.send) process.send(message);

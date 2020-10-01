@@ -1,4 +1,6 @@
+import { MessageType } from "./MessageType";
+import { TSettingDeclaration } from "../settings/TSettingDeclaration";
 export interface IMessageSettings {
-    type: "settings";
-    settings: any;
+    type: MessageType.SETTINGS;
+    settings: TSettingDeclaration[];
 }

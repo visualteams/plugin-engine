@@ -6,6 +6,7 @@ import { IMessageCall } from "./definitions/messages/IMessageCall";
 import { MessageType } from "./definitions/messages/MessageType";
 import { IMessageSettings } from "./definitions/messages/IMessageSettings";
 import { IMessageResponse } from "./definitions/messages/TMessageResponse";
+import { TEvents } from "./definitions/events/TEvents";
 
 interface ICallbackFunc {
   (err: string, res: any): any;
@@ -19,7 +20,7 @@ interface ICallFunc {
   ): void;
 }
 
-interface IProvideSettingsFunc {
+interface IProvideSettingsDeclarationFunc {
   (settings: TSettingDeclaration[]): void;
 }
 
@@ -31,7 +32,8 @@ type TCallbacksList = Record<string, ICallbackFunc>;
 
 class Plugin {
   private callbacks: TCallbacksList = {};
-  public settings: TObjectSetting = {};
+  private settings: TObjectSetting = {};
+  private events: TEvents = {};
 
   constructor() {
     require("net").createServer().listen();
@@ -39,7 +41,6 @@ class Plugin {
     process.on("message", (message: IMessageResponse): void => {
       if (message.type === MessageType.CALL)
         this.callbacks[message.id](message.err, message.res);
-
       else if (message.type === MessageType.SETTINGS) {
         const oldSettings = this.settings;
         this.settings = message.res;
@@ -47,19 +48,40 @@ class Plugin {
         if (this.onSettingsChange) {
           this.onSettingsChange(oldSettings, this.settings);
         }
+      } else if (message.type === MessageType.EVENTS) {
+        if (this.events[message.id]) {
+          this.events[message.id](message.res);
+        }
       }
     });
   }
 
   onSettingsChange: IOnSettingsChangeFunc = () => {};
 
-  provideSettings: IProvideSettingsFunc = (settings) => {
-    const message: IMessageSettings = {
-      type: MessageType.SETTINGS,
-      settings,
-    };
-
+  private _sendMessage = <T>(message: T) => {
     if (process?.send) process.send(message);
+  };
+
+  /** Settings */
+  getSettings = () => this.settings;
+
+  provideSettingsDeclaration: IProvideSettingsDeclarationFunc = (
+    settingsDeclaration
+  ) => {
+    this._sendMessage<IMessageSettings>({
+      type: MessageType.SETTINGS,
+      settingsDeclaration,
+    });
+  };
+
+  /** Events */
+  registerEvents = (events: TEvents) => {
+    this.events = events;
+
+    this._sendMessage({
+      type: MessageType.EVENTS_REGISTER,
+      eventsName: Object.keys(events),
+    });
   };
 
   call: ICallFunc = (method, data, cb) => {
@@ -67,9 +89,12 @@ class Plugin {
 
     this.callbacks[id] = cb;
 
-    const message: IMessageCall = { type: MessageType.CALL, id, method, data };
-
-    if (process?.send) process.send(message);
+    this._sendMessage<IMessageCall>({
+      type: MessageType.CALL,
+      id,
+      method,
+      data,
+    });
   };
 }
 

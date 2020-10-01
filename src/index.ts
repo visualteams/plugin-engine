@@ -13,11 +13,7 @@ interface ICallbackFunc {
 }
 
 interface ICallFunc {
-  (
-    method: string,
-    data: string | number | Record<any, any>,
-    cb: ICallbackFunc
-  ): void;
+  (method: string, data: string | number | Record<any, any>): void;
 }
 
 interface IProvideSettingsDeclarationFunc {
@@ -84,16 +80,21 @@ class Plugin {
     });
   };
 
-  call: ICallFunc = (method, data, cb) => {
-    const id: string = nanoid();
+  callMethod: ICallFunc = async (method, data) => {
+    return new Promise((resolve, reject) => {
+      const id: string = nanoid();
 
-    this.callbacks[id] = cb;
+      this.callbacks[id] = (err, res) => {
+        if (err) reject(err);
+        else resolve(res);
+      };
 
-    this._sendMessage<IMessageCall>({
-      type: MessageType.CALL,
-      id,
-      method,
-      data,
+      this._sendMessage<IMessageCall>({
+        type: MessageType.CALL,
+        id,
+        method,
+        data,
+      });
     });
   };
 }

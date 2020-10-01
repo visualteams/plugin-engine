@@ -1,12 +1,13 @@
 import { TSettingDeclaration } from "./definitions/settings/TSettingDeclaration";
 import { TObjectSetting } from "./definitions/settings/TObjectSetting";
+import { TEvents } from "./definitions/events/TEvents";
 interface ICallbackFunc {
     (err: string, res: any): any;
 }
 interface ICallFunc {
     (method: string, data: string | number | Record<any, any>, cb: ICallbackFunc): void;
 }
-interface IProvideSettingsFunc {
+interface IProvideSettingsDeclarationFunc {
     (settings: TSettingDeclaration[]): void;
 }
 interface IOnSettingsChangeFunc {
@@ -14,10 +15,16 @@ interface IOnSettingsChangeFunc {
 }
 declare class Plugin {
     private callbacks;
-    settings: TObjectSetting;
+    private settings;
+    private events;
     constructor();
     onSettingsChange: IOnSettingsChangeFunc;
-    provideSettings: IProvideSettingsFunc;
+    private _sendMessage;
+    /** Settings */
+    getSettings: () => Record<string, string | number | boolean>;
+    provideSettingsDeclaration: IProvideSettingsDeclarationFunc;
+    /** Events */
+    registerEvents: (events: TEvents) => void;
     call: ICallFunc;
 }
 export default Plugin;

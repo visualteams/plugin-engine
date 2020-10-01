@@ -1,3 +1,4 @@
 import { IMessageResponseGeneric } from "./IMessageResponseGeneric";
 import { IMessageResponseSettings } from "./IMessageResponseSettings";
-export declare type IMessageResponse = IMessageResponseSettings | IMessageResponseGeneric;
+import { IMessageResponseEvent } from "./IMessageResponseEvent";
+export declare type IMessageResponse = IMessageResponseSettings | IMessageResponseEvent | IMessageResponseGeneric;

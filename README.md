@@ -28,10 +28,30 @@ import Plugin from "@visualteams/plugin-engine";
 class ExamplePlugin extends Plugin {
   constructor() {
     super();
+
+    this.registerEvents({
+      MY_SUPER_SYNC: this.sync,
+    });
+  }
+
+  sync() {
+    console.log("Hello world !");
   }
 }
 
 new ExamplePlugin();
+```
+
+### registerEvents
+
+The Plugin class provides a method `registerEvents` to add a listener on [VisualTeams Events]()
+
+You can fire yours event or any VisualTeams Event with :
+
+```javascript
+import callMethod from "@visualteams/plugin-engine/both/callMethod";
+
+callMethod("plugins.dispatch", "MY_SUPER_SYNC", { myBestArgs: "isHere" });
 ```
 
 ### Client Side

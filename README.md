@@ -110,6 +110,7 @@ You can use the toaster of the core module to keep in touche the user
 
 ```javascript
 import sendToast from "@visualteams/plugin-engine/client/sendToast";
+import { ToastLevel } from "@visualteams/plugin-engine/definitions/client/ToastLevel";
 
 // Send a success message
 sendToast(ToastLevel.SUCCESS, "Saved");

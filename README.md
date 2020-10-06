@@ -46,6 +46,12 @@ new ExamplePlugin();
 
 The Plugin class provides a method `registerEvents` to add a listener on [VisualTeams Events]()
 
+```javascript
+this.registerEvents({
+  MY_SUPER_SYNC: this.sync,
+});
+```
+
 You can fire yours event or any VisualTeams Event with :
 
 ```javascript

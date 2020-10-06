@@ -1,0 +1,1 @@
+{"version":3,"file":"sendToast.js","sourceRoot":"","sources":["../src/client/sendToast.tsx"],"names":[],"mappings":";;;;;AACA,mEAAkE;AAClE,oEAA8C;AAG9C,IAAM,SAAS,GAAG,UAAC,KAAiB,EAAE,OAAe;IACnD,IAAM,QAAQ,GAAkB;QAC9B,IAAI,EAAE,yBAAW,CAAC,KAAK;QACvB,KAAK,OAAA;QACL,OAAO,SAAA;KACR,CAAC;IAEF,qBAAW,CAAC,QAAQ,CAAC,CAAC;AACxB,CAAC,CAAC;AAEF,kBAAe,SAAS,CAAC"}

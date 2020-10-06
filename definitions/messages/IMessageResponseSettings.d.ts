@@ -1,8 +1,7 @@
 import { MessageType } from "./MessageType";
-import { TObjectSetting } from "../settings/TObjectSetting";
 export interface IMessageResponseSettings {
-    type: MessageType.SETTINGS;
+    type: MessageType.GET_SETTINGS;
     id: string;
     err: string;
-    res: TObjectSetting[];
+    res: string;
 }

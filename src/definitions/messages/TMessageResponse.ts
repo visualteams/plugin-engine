@@ -1,8 +1,8 @@
-import { IMessageResponseGeneric } from "./IMessageResponseGeneric";
-import { IMessageResponseSettings } from "./IMessageResponseSettings";
-import { IMessageResponseEvent } from "./IMessageResponseEvent";
+import { MessageType } from "./MessageType";
 
-export type IMessageResponse =
-  | IMessageResponseSettings
-  | IMessageResponseEvent
-  | IMessageResponseGeneric;
+export type IMessageResponse = {
+  type: MessageType;
+  id: string;
+  err: string;
+  res: any;
+};

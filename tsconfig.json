@@ -13,7 +13,9 @@
     "types": ["node"],
     "lib": ["es2017", "dom"],
     "outDir": ".",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "jsx": "react"
   },
   "exclude": ["node_modules", "definitions"],
   "include": ["src", "tests"]

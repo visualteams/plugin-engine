@@ -1,19 +1,28 @@
 {
   "name": "@visualteams/plugin-engine",
-  "version": "1.0.11",
+  "version": "1.1.0",
   "main": "index",
   "typings": "index",
   "license": "MIT",
   "scripts": {
     "prepublish": "npm run build",
-    "build": "tsc"
+    "build": "tsc",
+    "updateContributor": "contributor-faces"
   },
   "devDependencies": {
     "@types/node": "^14.11.2",
+    "contributor-faces": "^1.1.0",
     "prettier": "^2.1.2",
     "typescript": "^4.0.3"
   },
+  "peerDependencies": {
+    "@material-ui/core": "4.11.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
   "dependencies": {
+    "@material-ui/styles": "^4.10.0",
+    "@visualteams/ui-kit": "^1.0.0",
     "nanoid": "^3.1.12"
   },
   "repository": {
@@ -24,6 +33,6 @@
   "bugs": {
     "url": "https://github.com/visualteams/plugin-engine/issues"
   },
-  "homepage": "https://github.com/visualteams/plugin-engine#readme",
+  "homepage": "https://www.visualteams.fr",
   "description": ""
 }

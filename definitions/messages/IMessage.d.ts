@@ -1,3 +1,6 @@
 import { IMessageCall } from "./IMessageCall";
-import { IMessageSettings } from "./IMessageSettings";
-export declare type IMessage = IMessageCall | IMessageSettings;
+import { IMessageGetData } from "./IMessageGetData";
+import { IMessageEventsRegister } from "./IMessageRegisterEvent";
+import { IMessageToast } from "./IMessageToast";
+import { IMessageSetData } from "./IMessageSetData";
+export declare type IMessage = IMessageCall | IMessageGetData | IMessageSetData | IMessageEventsRegister | IMessageToast;

@@ -42,7 +42,7 @@ class ExamplePlugin extends Plugin {
 new ExamplePlugin();
 ```
 
-### registerEvents
+#### registerEvents
 
 The Plugin class provides a method `registerEvents` to add a listener on [VisualTeams Events]()
 
@@ -60,9 +60,9 @@ import callMethod from "@visualteams/plugin-engine/both/callMethod";
 callMethod("plugins.dispatch", "MY_SUPER_SYNC", { myBestArgs: "isHere" });
 ```
 
-### registerHooks
+#### registerHooks
 
-The Plugin class provides a method `registerHooks` to attach a component to VisualTeams UI. Follow this link [VisualTeams Hooks]() to see a list of all available hooks
+The Plugin class provides a method `registerHooks` to attach a component to VisualTeams UI. Follow this link [VisualTeams Hooks]() to see a list of all availables hooks.
 
 ```javascript
 import { Hooks } from "@visualteams/plugin-engine/definitions/hooks";
@@ -70,13 +70,15 @@ import { Hooks } from "@visualteams/plugin-engine/definitions/hooks";
 this.registerHooks([Hooks.ProjectConfiguration]);
 ```
 
-Be careful, on the server side, you must register your hooks **and** you must pass in provideComponent on the client side too.
+Be careful, you must register your hooks on the server side **and** you must pass in `provideComponents` on the client side too.
 
 ### Client Side
 
+#### provideComponents
+
 Create a src directory which contain the following `index.js` file.
 
-This file is the mail file of your client side plugin. You must provide your components by specifying an associated route.
+This file is the main file of your client side plugin. You must provide your components by specifying an associated route.
 
 ```javascript
 import provideComponents from "@visualteams/plugin-engine/client/provideComponents";
@@ -95,7 +97,7 @@ provideComponents([
 ]);
 ```
 
-Be careful, all hooks must be also registered on the server side with `registerHooks`
+Be careful, all hooks must be also registered with `registerHooks` on the server side
 
 #### Specific routes
 
@@ -109,7 +111,7 @@ There are also some route to provide some specific functionality :
 
 ## Helpers
 
-Some helpers are available to communicate with the core module
+Some helpers are available to communicate easily with the core module
 
 ### getData and setData
 

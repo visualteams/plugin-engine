@@ -1,6 +1,6 @@
 {
   "name": "@visualteams/plugin-engine",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "main": "index",
   "typings": "index",
   "license": "MIT",
@@ -36,5 +36,5 @@
   },
   "homepage": "https://www.visualteams.fr",
   "description": "Create your own plugin for VisualTeams App !",
-  "files": ["index.js", "both/**/*.*", "client/**/*.*", "definitions/**/*.*"]
+  "files": ["index.js", "index.d.ts", "both/**/*.*", "client/**/*.*", "definitions/**/*.*"]
 }

@@ -60,6 +60,18 @@ import callMethod from "@visualteams/plugin-engine/both/callMethod";
 callMethod("plugins.dispatch", "MY_SUPER_SYNC", { myBestArgs: "isHere" });
 ```
 
+### registerHooks
+
+The Plugin class provides a method `registerHooks` to attach a component to VisualTeams UI. Follow this link [VisualTeams Hooks]() to see a list of all available hooks
+
+```javascript
+import { Hooks } from "@visualteams/plugin-engine/definitions/hooks";
+
+this.registerHooks([Hooks.ProjectConfiguration]);
+```
+
+Be careful, on the server side, you must register your hooks **and** you must pass in provideComponent on the client side too.
+
 ### Client Side
 
 Create a src directory which contain the following `index.js` file.
@@ -68,13 +80,28 @@ This file is the mail file of your client side plugin. You must provide your com
 
 ```javascript
 import provideComponents from "@visualteams/plugin-engine/client/provideComponents";
+import { Hooks } from "@visualteams/plugin-engine/definitions/hooks";
 
 const Settings = () => <div>Settings Page</div>;
-
-provideComponents([{ route: "settings", component: <Settings /> }]);
+const HookProjectConfiguration = () => (
+  <div>Attach my component to VisualTeams UI</div>
+);
+provideComponents([
+  { route: "settings", component: <Settings /> },
+  {
+    route: Hooks.ProjectConfiguration,
+    component: <HookProjectConfiguration />,
+  },
+]);
 ```
 
+Be careful, all hooks must be also registered on the server side with `registerHooks`
+
 #### Specific routes
+
+All routes associated at a hookname is reserved and can not be used.
+
+There are also some route to provide some specific functionality :
 
 | Route    | Description                                                  |
 | -------- | ------------------------------------------------------------ |
@@ -144,6 +171,20 @@ sendToast(ToastLevel.SUCCESS, "Saved");
 // Send an error message
 sendToast(ToastLevel.ERROR, "Failed");
 ```
+
+### getParams
+
+When you register some hooks to attach component, the server may send context to your component. This helper will return an object which can help you to do its work
+
+```javascript
+import getParams from "@visualteams/plugin-engine/client/getParams";
+
+const params = getParams();
+
+console.log(params); // { projectId: '42' }
+```
+
+**Available on client only**
 
 ## Contributors
 

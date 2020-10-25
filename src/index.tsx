@@ -4,6 +4,7 @@ import { TEvents } from "./definitions/events/TEvents";
 import sendMessage from "./both/sendMessage";
 import { CALLBACKS } from "./both/callMethod";
 import { IMessageEventsRegister } from "./definitions/messages/IMessageRegisterEvent";
+import { IMessageProvideComponents } from "./definitions/messages/IMessageProvideComponents";
 
 class Plugin {
   private events: TEvents = {};
@@ -27,6 +28,15 @@ class Plugin {
     const message: IMessageEventsRegister = {
       type: MessageType.EVENTS_REGISTER,
       eventsName: Object.keys(events),
+    };
+
+    sendMessage(message);
+  };
+
+  registerHooks = (routes: string[]) => {
+    const message: IMessageProvideComponents = {
+      type: MessageType.PROVIDE_COMPONENTS,
+      routes,
     };
 
     sendMessage(message);

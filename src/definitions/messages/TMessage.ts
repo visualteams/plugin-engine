@@ -1,12 +1,14 @@
 import { IMessageCall } from "./IMessageCall";
 import { IMessageGetData } from "./IMessageGetData";
 import { IMessageEventsRegister } from "./IMessageRegisterEvent";
-import { IMessageToast } from "./IMessageToast";
+import { IMessageProvideComponents } from "./IMessageProvideComponents";
 import { IMessageSetData } from "./IMessageSetData";
+import { IMessageToast } from "./IMessageToast";
 
-export type IMessage =
+export type TMessage =
   | IMessageCall
   | IMessageGetData
-  | IMessageSetData
   | IMessageEventsRegister
+  | IMessageProvideComponents
+  | IMessageSetData
   | IMessageToast;

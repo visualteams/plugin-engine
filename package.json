@@ -1,6 +1,6 @@
 {
   "name": "@visualteams/plugin-engine",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "main": "index",
   "typings": "index",
   "license": "MIT",
@@ -23,7 +23,8 @@
   "dependencies": {
     "@material-ui/styles": "^4.10.0",
     "@visualteams/ui-kit": "^1.0.0",
-    "nanoid": "^3.1.12"
+    "nanoid": "^3.1.12",
+    "query-string": "^6.13.6"
   },
   "repository": {
     "type": "git",

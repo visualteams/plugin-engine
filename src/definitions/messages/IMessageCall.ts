@@ -1,6 +1,7 @@
 import { MessageType } from "./MessageType";
+import { IMessageBase } from "./IMessageBase";
 
-export interface IMessageCall {
+export interface IMessageCall extends IMessageBase {
   type: MessageType.CALL;
   id: string;
   method: string;

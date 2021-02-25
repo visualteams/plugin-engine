@@ -1,4 +1,4 @@
-![VisualTeams](https://www.visualteams.fr/wp-content/uploads/2020/04/path14.png)
+![VisualTeams](https://www.visualteams.fr/images/logo.png)
 
 # @visualteams/plugin-engine
 
@@ -196,6 +196,7 @@ Feel free to check the issues page.
 ### Code Contributors
 
 [//]: contributor-faces
+
 <a href="https://github.com/Sylchauf"><img src="https://avatars.githubusercontent.com/u/5569487?v=4" title="Sylchauf" width="80" height="80"></a>
 
 [//]: contributor-faces

@@ -1,7 +1,7 @@
 .idea
-both/
-client/
-definitions/
-index.js
-index.d.ts
+/both
+/client
+/definitions
+/index.js
+/index.d.ts
 node_modules

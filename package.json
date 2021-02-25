@@ -1,6 +1,6 @@
 {
   "name": "@visualteams/plugin-engine",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "main": "index",
   "typings": "index",
   "license": "MIT",
@@ -28,13 +28,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/visualteams/plugin-engine.git"
+    "url": "https://github.com/visualteams/plugin-engine.git"
   },
   "author": "",
   "bugs": {
     "url": "https://github.com/visualteams/plugin-engine/issues"
   },
-  "homepage": "https://www.visualteams.fr",
+  "homepage": "https://www.visualteams.eu",
   "description": "Create your own plugin for VisualTeams App !",
-  "files": ["index.js", "index.d.ts", "both/**/*.*", "client/**/*.*", "definitions/**/*.*"]
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "both/**/*.*",
+    "client/**/*.*",
+    "definitions/**/*.*"
+  ]
 }

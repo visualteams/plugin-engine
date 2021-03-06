@@ -101,10 +101,10 @@
   dependencies:
     "@types/node" "*"
 
-"@visualteams/ui-kit@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@visualteams/ui-kit/-/ui-kit-1.0.0.tgz#a3ad3d673b3a583f58cf2e6c7c6241495fbf3883"
-  integrity sha512-OnOCbA8Z+dhY7qRHHwIf/dfeVcZUHWY9rJt7V1qL4t/KXcnf8ekSOKZjIsPod5HTbWiT9n95SdPRgulil7KSsw==
+"@visualteams/ui-kit@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@visualteams/ui-kit/-/ui-kit-1.2.0.tgz#988c40c670394783d07ace038e3c0c1925ce2fff"
+  integrity sha512-fwVuko8xmo7mSXbzAvdAlNwbfYDRL1SQTYUzYcGh0YUBtxjBO8QaXlXLKJxomPyV0PzfCCf+a29+XqG84Xdi2w==
 
 ansi-regex@^2.0.0:
   version "2.1.1"

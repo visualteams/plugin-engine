@@ -9,12 +9,12 @@ type Options = {
   multi: boolean;
 };
 
-const getData = async (
+const getData = async <T = string | IMultipleData[]>(
   key: string | RegExp,
   options: Options = {
     multi: false,
   }
-): Promise<string | IMultipleData[]> => {
+): Promise<T> => {
   const id: string = nanoid();
 
   return new Promise((resolve, reject) => {

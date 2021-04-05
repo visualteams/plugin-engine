@@ -1,0 +1,1 @@
+- Push new history from plugin client side (to move to another page)

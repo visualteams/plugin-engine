@@ -7,7 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] - 2020-04-05
+
+- Add the ProfileUser hook
+- The server can now register methods
+- Refactoring of callMethod on the client to call plugins methods
+- Inject CssBaseline to have Material-ui CSS initialization
+
 ## [1.2.5] - 2020-03-06
+
+- Update @visualteams/ui-kit to keep the latest design system
+
+## [1.2.5] - 2020-03-06
+
+- Update @visualteams/ui-kit to keep the latest design system
 
 ### Changed
 

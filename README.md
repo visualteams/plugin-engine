@@ -106,7 +106,9 @@ You can register web listeners from your plugin to stay in touch in real time fr
 
 ```javascript
 this.registerMethods({
-  notifications: async () => {
+  notifications: async (req) => {
+    console.log(req); // The request and params associated
+    
     return {
       statusCode: 200,
       body: "Hello World !",

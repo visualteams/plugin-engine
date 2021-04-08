@@ -100,6 +100,30 @@ callMethod("PLUGIN_NAME.getAccessToken", {
 
 See the callMethod documentation for more details
 
+#### registerWebListeners
+
+You can register web listeners from your plugin to stay in touch in real time from another service (webhooks)
+
+```javascript
+this.registerMethods({
+  notifications: async () => {
+    return {
+      statusCode: 200,
+      body: "Hello World !",
+    };
+  },
+});
+```
+
+Note : Your function must return a promise which resolve to the following object :
+
+```javascript
+{
+  "statusCode": YOUR_HTTP_CODE_RESULT,
+  "body": "YOUR_HTTP_BODY_RESULT"
+}
+```
+
 ### Client Side
 
 #### provideComponents

@@ -6,11 +6,13 @@ import { TEvents } from "./definitions/events/TEvents";
 import sendMessage from "./both/sendMessage";
 import { CALLBACKS } from "./both/callMethod";
 import { IMessageProvideComponents } from "./definitions/messages/IMessageProvideComponents";
-import { TMethods } from "./definitions/methods/TEvents";
+import { TMethods } from "./definitions/methods/TMethods";
+import { TWebListeners } from "./definitions/webListeners/TWebListeners";
 
 class Plugin {
   private events: TEvents = {};
   private methods: TMethods = {};
+  private webListeners: TWebListeners = {};
 
   constructor() {
     require("net").createServer().listen();
@@ -35,6 +37,18 @@ class Plugin {
             sendMessage(this._forgeMethodResponse(_message.id, error, null));
           }
         }
+      } else if (message.type === MessageType.WEB_HOOK) {
+        const route = message.res.baseUrl.replace("/webhook/", ""); // remove the prefix
+
+        if (this.webListeners[route]) {
+          this.webListeners[route](message.res).then((result: any) => {
+            sendMessage(this._forgeWebhookResponse(message.id, null, result));
+          });
+        } else {
+          sendMessage(
+            this._forgeWebhookResponse(message.id, "Endpoint not found", null)
+          );
+        }
       }
     });
   }
@@ -48,6 +62,19 @@ class Plugin {
       type: MessageType.METHODS,
       id,
       err: err ? JSON.stringify(err) : undefined,
+      res: res ? JSON.stringify(res) : undefined,
+    };
+  };
+
+  private _forgeWebhookResponse = (
+    id: string,
+    err: any,
+    res: any
+  ): IMessageResponse => {
+    return {
+      type: MessageType.WEB_HOOK,
+      id,
+      err: undefined,
       res: res ? JSON.stringify(res) : undefined,
     };
   };
@@ -74,6 +101,10 @@ class Plugin {
     };
 
     sendMessage(message);
+  };
+
+  registerWebListeners = (webListeners: any) => {
+    this.webListeners = webListeners;
   };
 }
 

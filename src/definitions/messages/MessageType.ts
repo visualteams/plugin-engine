@@ -3,6 +3,7 @@ export enum MessageType {
   GET_DATA = "get_data",
   SET_DATA = "set_data",
   METHODS_REGISTER = "methods_register",
+  WEB_HOOK = "webhook",
   EVENTS = "events",
   METHODS = "methods",
   TOAST = "toast",

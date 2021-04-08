@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0] - 2020-04-08
+
+- Add Web listeners to receive webhooks on plugins
+
 ## [1.3.0] - 2020-04-05
 
 - Add the ProfileUser hook

@@ -108,7 +108,7 @@ You can register web listeners from your plugin to stay in touch in real time fr
 this.registerMethods({
   notifications: async (req) => {
     console.log(req); // The request and params associated
-    
+
     return {
       statusCode: 200,
       body: "Hello World !",
@@ -117,7 +117,12 @@ this.registerMethods({
 });
 ```
 
-Note : Your function must return a promise which resolve to the following object :
+Your web listener is available ac `https://app.visualteams.fr/plugins/PLUGIN_NAME/weblisteners/TEAM_ID/notifications`
+
+Note :
+
+- Your function must return a promise which resolve to the following object :
+- The teamId is available in `process.env.teamId`
 
 ```javascript
 {

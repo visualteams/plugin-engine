@@ -38,7 +38,10 @@ class Plugin {
           }
         }
       } else if (message.type === MessageType.WEB_HOOK) {
-        const route = message.res.baseUrl.replace("/weblisteners/", ""); // remove the prefix
+        const route = message.res.baseUrl.replace(
+          `/weblisteners/${process.env.teamId}/`,
+          ""
+        ); // remove the prefix
 
         if (this.webListeners[route]) {
           this.webListeners[route](message.res).then((result: any) => {

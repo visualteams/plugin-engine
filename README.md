@@ -18,7 +18,7 @@ A VisualTeams Plugin can modify/improve the core module on the server side as we
 
 ### Server side
 
-Create a server directory which contain the following `index.ts` file.
+Create a server directory which contains the following `index.ts` file.
 
 This is the main file of your server side plugin. You must extend the Plugin class of this package then run a new instance of your class.
 
@@ -62,7 +62,7 @@ callMethod("plugins.dispatch", "MY_SUPER_SYNC", { myBestArgs: "isHere" });
 
 #### registerHooks
 
-The Plugin class provides a method `registerHooks` to attach a component to VisualTeams UI. Follow this link [VisualTeams Hooks](https://documentation.visualteams.eu/plugins/hooks) to see a list of all available hooks.
+The Plugin class provides / (supplies) a method `registerHooks` to attach a component to VisualTeams UI. Follow this link [VisualTeams Hooks](https://documentation.visualteams.eu/plugins/hooks) to see a list of all available hooks.
 
 ```javascript
 import { Hooks } from "@visualteams/plugin-engine/definitions/hooks";
